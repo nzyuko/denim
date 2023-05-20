@@ -82,24 +82,6 @@ func setup(cmd *cobra.Command, args []string) {
 	sevenZipExe := filepath.Join(sevenZipDir, "7za.exe")
 	os.Remove(sevenZip)
 
-	// Mingw-x64
-	fmt.Println(Info + "Downloading mingw-x64 ...")
-	mingw7z := filepath.Join(denimDir, "mingw-x64.7z")
-	if _, err := os.Stat(mingw7z); !os.IsNotExist(err) {
-		os.Remove(mingw7z)
-	}
-	err = downloadAsset(client, Mingw64URL, mingw7z)
-	if err != nil {
-		fmt.Printf(Warn+"Download failed %s\n", err)
-		return
-	}
-	fmt.Println(Info + "Extracting mingw-x64 ...")
-	err = util.Extract7z(sevenZipExe, mingw7z, denimDir)
-	if err != nil {
-		fmt.Printf(Warn+"Failed to extract mingw-x64 %s\n", err)
-		return
-	}
-	os.Remove(mingw7z)
 
 	// obfuscator-llvm
 	fmt.Println(Info + "Downloading obfuscator-llvm ...")
