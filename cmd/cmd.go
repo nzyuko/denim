@@ -99,7 +99,7 @@ func init() {
 
 	// Compile - Standard options
 	compileCmd.Flags().StringP(outputFlagStr, "o", "", "output file")
-	compileCmd.Flags().BoolP(allCodeFlagStr, "a", false, "obfuscate all code including nim stdlib")
+	compileCmd.Flags().BoolP(allCodeFlagStr, "A", false, "obfuscate all code including nim stdlib")
 	compileCmd.Flags().BoolP(verboseFlagStr, "v", false, "display verbose information")
 	rootCmd.AddCommand(compileCmd)
 
