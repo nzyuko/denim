@@ -36,11 +36,7 @@ var (
 	// ObfuscatorLLVMURL - URL to a O-LLVM Github repo
 	ObfuscatorLLVMURL string
 
-	// Mingw64URL - URL to mingw-x64 download
-	Mingw64URL string
-
-	// SevenZipURL - The MinGW people are assholes and only distribute 7z files
-	SevenZipURL string
+	
 )
 
 var setupCmd = &cobra.Command{
@@ -65,24 +61,7 @@ func setup(cmd *cobra.Command, args []string) {
 		return
 	}
 
-	// 7z
-	fmt.Println(Info + "Downloading 7-zip ...")
-	sevenZip := filepath.Join(denimDir, "7z.zip")
-	if _, err := os.Stat(sevenZip); !os.IsNotExist(err) {
-		os.Remove(sevenZip)
-	}
-	err = downloadAsset(client, SevenZipURL, sevenZip)
-	if err != nil {
-		fmt.Printf(Warn+"Download failed %s\n", err)
-		return
-	}
-	fmt.Println(Info + "Extracting 7z ...")
-	sevenZipDir := filepath.Join(denimDir, "7z")
-	util.Unzip(sevenZip, sevenZipDir)
-	sevenZipExe := filepath.Join(sevenZipDir, "7za.exe")
-	os.Remove(sevenZip)
-
-
+	
 	// obfuscator-llvm
 	fmt.Println(Info + "Downloading obfuscator-llvm ...")
 	llvmTar := filepath.Join(denimDir, "ollvm.tar.gz")
